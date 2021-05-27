@@ -1,16 +1,10 @@
 import { Link } from "react-router-dom"
-import apiClient from "../../services/apiClient"
 import Twitter from "../Icons/Twitter"
 import Instagram from "../Icons/Instagram"
 import Facebook from "../Icons/Facebook"
 import "./Navbar.css"
 
-export default function Navbar({ user, setUser }) {
-  const handleLogout = async () => {
-    await apiClient.logoutUser()
-    setUser({})
-  }
-
+export default function Navbar({ user, handleLogout }) {
   return (
     <nav className="Navbar">
       <div className="content">

@@ -65,10 +65,16 @@ export default function App() {
     })
   }
 
+  const handleLogout = async () => {
+    await apiClient.logoutUser()
+    setUser({})
+    setError(null)
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} handleLogout={handleLogout} />
         <Routes>
           <Route
             path="/"
