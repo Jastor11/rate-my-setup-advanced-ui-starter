@@ -36,12 +36,9 @@ export default function App() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data, error } = await apiClient.fetchUserFromToken()
+      const { data } = await apiClient.fetchUserFromToken()
       if (data) {
         setUser(data.user)
-      }
-      if (error) {
-        setError(error)
       }
     }
 

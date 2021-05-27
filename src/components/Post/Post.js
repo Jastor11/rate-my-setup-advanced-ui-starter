@@ -4,7 +4,7 @@ import { formatRating, formatDate } from "../../utils/format"
 import "./Post.css"
 
 export default function Post({ post, user }) {
-  const userOwnsPost = user?.email && post?.userEmail === user?.email
+  const userOwnsPost = user?.username && post?.username === user?.username
 
   return (
     <div className="Post">
@@ -28,7 +28,7 @@ export default function Post({ post, user }) {
         <div className="meta">
           <span className="date">{formatDate(post.createdAt)}</span>
           <span className="user">
-            {userOwnsPost ? "You" : post.userEmail}
+            {userOwnsPost ? "You" : `@${post.username}`}
             {userOwnsPost ? (
               <Link to={`/posts/${post.id}`}>
                 <i className="material-icons">edit</i>

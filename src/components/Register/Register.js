@@ -9,6 +9,7 @@ export default function Register({ user, setUser }) {
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
     email: "",
+    username: "",
     password: "",
     passwordConfirm: "",
   })
@@ -53,7 +54,11 @@ export default function Register({ user, setUser }) {
       setErrors((e) => ({ ...e, passwordConfirm: null }))
     }
 
-    const { data, error } = await apiClient.signupUser({ email: form.email, password: form.password })
+    const { data, error } = await apiClient.signupUser({
+      email: form.email,
+      password: form.password,
+      username: form.username,
+    })
     if (data) {
       setUser(data.user)
       apiClient.setToken(data.token)
@@ -63,23 +68,6 @@ export default function Register({ user, setUser }) {
     }
 
     setIsProcessing(false)
-    // try {
-    //   const res = await axios.post("http://localhost:3001/auth/register", {
-    //     email: form.email,
-    //     password: form.password,
-    //   })
-    //   if (res?.data?.user) {
-    //     setUser(res.data.user)
-    //   } else {
-    //     setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
-    //   }
-    // } catch (err) {
-    //   console.log(err)
-    //   const message = err?.response?.data?.error?.message
-    //   setErrors((e) => ({ ...e, form: message ?? String(err) }))
-    // } finally {
-    //   setIsProcessing(false)
-    // }
   }
 
   return (
@@ -101,6 +89,18 @@ export default function Register({ user, setUser }) {
               onChange={handleOnInputChange}
             />
             {errors.email && <span className="error">{errors.email}</span>}
+          </div>
+
+          <div className="input-field">
+            <label htmlFor="username">username</label>
+            <input
+              type="test"
+              name="username"
+              placeholder="your_username"
+              value={form.username}
+              onChange={handleOnInputChange}
+            />
+            {errors.username && <span className="error">{errors.username}</span>}
           </div>
 
           <div className="input-field">

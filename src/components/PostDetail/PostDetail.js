@@ -67,7 +67,7 @@ export default function PostDetail({ user, updatePost }) {
   }
 
   const userIsLoggedIn = Boolean(user?.email)
-  const userOwnsPost = userIsLoggedIn && post?.userEmail === user?.email
+  const userOwnsPost = user?.username && post?.username === user?.username
 
   if (!post && !isFetching) return null
   if (!post) return <h1>Loading...</h1>
@@ -94,7 +94,7 @@ export default function PostDetail({ user, updatePost }) {
 
           <div className="meta">
             <span className="date">{formatDate(post.createdAt)}</span>
-            <span className="user">{post.userEmail}</span>
+            <span className="user">@{post.username}</span>
           </div>
         </div>
       </div>
